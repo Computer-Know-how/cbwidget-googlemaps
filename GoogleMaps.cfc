@@ -22,14 +22,14 @@ component extends="contentbox.model.ui.BaseWidget" singleton{
 
 	/**
 	* Renders a goole map
-	* @mapaddress.hint Address to map to.  If you are not using latitude/longitude
+	* @address.hint Address to map to.  If you are not using latitude/longitude
 	* @latitude.hint Latitude to map. If you would rather you can use the latitude/longitude instead of an address
 	* @longitude.hint Longitude to map. If you would rather you can use the latitude/longitude instead of an address
 	* @zoomLevel.hint Zoom level to map to.
 	* @width.hint Width of the map
 	* @height.hint Height of the map
 	*/
-	any function renderIt(string mapaddress="",string latitude="",string longitude="",numeric zoomLevel="8", numeric width="425", numeric height="350"){
+	any function renderIt(string address="",string latitude="",string longitude="",numeric zoomLevel="8", numeric width="425", numeric height="350"){
 		//if they are using lat/long use that
 		if(len(arguments.latitude) && len(arguments.longitude)) {
 			return '
@@ -38,11 +38,11 @@ component extends="contentbox.model.ui.BaseWidget" singleton{
 				<small><a href="https://maps.google.com/?ie=UTF8&amp;ll=#arguments.latitude#,#arguments.longitude#&amp;t=h&amp;z=#arguments.zoomLevel#&amp;source=embed" style="color:##0000FF;text-align:left">View Larger Map</a></small>';
 		}
 		//setup the address and embed the map
-		var arguments.mapaddress = replace(arguments.mapaddress," ","+","all");
+		var arguments.address = replace(arguments.address," ","+","all");
 		return '
-				<iframe width="#arguments.width#" height="#arguments.height#" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;q=#arguments.mapaddress#&amp;t=h&amp;z=#arguments.zoomLevel#&amp;output=embed"></iframe>
+				<iframe width="#arguments.width#" height="#arguments.height#" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;q=#arguments.address#&amp;t=h&amp;z=#arguments.zoomLevel#&amp;output=embed"></iframe>
 				<br />
-				<small><a href="https://maps.google.com/?ie=UTF8&amp;q=#arguments.mapaddress#t&amp;t=h&amp;z=#arguments.zoomLevel#&amp;source=embed" style="color:##0000FF;text-align:left">View Larger Map</a></small>';
+				<small><a href="https://maps.google.com/?ie=UTF8&amp;q=#arguments.address#t&amp;t=h&amp;z=#arguments.zoomLevel#&amp;source=embed" style="color:##0000FF;text-align:left">View Larger Map</a></small>';
 	}
 
 
